@@ -1,0 +1,29 @@
+<body>
+  <div class="header-main">
+    <header>
+      <p>To-do list</p>
+      <button (click)="isForm = true">+</button>
+    </header>
+  </div>
+  <span *ngIf="taskDatas.length == 0">Não há tarefas a serem feitas !</span>
+
+  <div class="task-data">
+    <form [formGroup]="addFormBuilder" *ngIf="isForm">
+      <div class="input-group">
+        <span>Adicionar tarefa</span>
+        <label>Nome</label>
+        <input type="text" placeholder="Nome da tarefa" formControlName="name">
+        <label>Descrição</label>
+        <input type="text" placeholder="Descrição da tarefa" formControlName="description">
+        <div class="button-group">
+          <div class="button-submit">
+            <button>Adicionar</button>
+          </div>
+          <div class="button-cancel">
+            <button (click)="isForm = !isForm">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>

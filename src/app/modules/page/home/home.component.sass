@@ -1,0 +1,109 @@
+*
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  font-family: Arial, Helvetica, sans-serif
+
+$colorBackGround: #0c2726
+$colorBackGroundHeader: #2f9282
+$colorTextHeader: #ffff
+$colorBackGroundButtonAddTask: #22635b
+
+
+body
+  background-color: $colorBackGround
+  height: 100vh
+
+
+.header-main
+  background-color: $colorBackGroundHeader
+  padding: 20px
+  border-bottom-left-radius: 15px
+  border-bottom-right-radius: 15px
+
+  header
+    display: flex
+    justify-content: space-between
+
+  p
+    color: $colorTextHeader
+
+  button
+    background-color: $colorBackGroundButtonAddTask
+    color: $colorTextHeader
+    width: 25px
+    height: 25px
+    border-radius: 50%
+    outline: none
+    border-style: none
+    cursor: pointer
+
+span
+  color: $colorBackGroundHeader
+  margin-top: 10px
+  display: flex
+  align-items: center
+  justify-content: center
+
+.task-data
+  display: flex
+  align-items: center
+  justify-content: center
+
+  form
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    margin-top: 15px
+    width: 450px
+    height: 200px
+    border-radius: 5px
+    background-color: $colorBackGroundButtonAddTask
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
+
+    .input-group
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-items: center
+
+      span
+        color: #ffff
+
+      label
+        margin-top: 10px
+        color: $colorTextHeader
+
+      input
+        outline: none
+        border-style: solid
+        border-color: #ffff
+        border-width: 1
+        background: none
+
+      input::placeholder
+        color: #ffff
+        font-size: 10px
+
+    .button-group
+        display: flex
+        flex-direction: row
+        button
+          color: #ffff
+          margin-top: 8px
+          border: none
+          border-radius: 5px
+          cursor: pointer
+          padding: 5px
+
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
+
+        .button-submit
+          button
+            background-color: #25b62f
+
+        .button-cancel
+          button
+            color: #ffff
+            background-color: #ff0000
