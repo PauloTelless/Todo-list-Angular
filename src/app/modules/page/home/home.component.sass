@@ -5,10 +5,9 @@
   font-family: Arial, Helvetica, sans-serif
 
 $colorBackGround: #0c2726
-$colorBackGroundHeader: #2f9282
+$colorBackGroundHeader: #17b485
 $colorTextHeader: #ffff
 $colorBackGroundButtonAddTask: #22635b
-
 
 body
   background-color: $colorBackGround
@@ -37,13 +36,6 @@ body
     border-style: none
     cursor: pointer
 
-span
-  color: $colorBackGroundHeader
-  margin-top: 10px
-  display: flex
-  align-items: center
-  justify-content: center
-
 .task-data
   display: flex
   align-items: center
@@ -70,17 +62,17 @@ span
       flex-direction: column
       align-items: row
       width: 80%
+      height: 80%
 
       input
         border-style: solid
+        border-color: #ffff
         background: none
         border-radius: 2px
 
       .form-control
         background: none
 
-      span
-        color: #ffff
 
       label
         margin-top: 10px
@@ -111,3 +103,46 @@ span
         .button-cancel
           button
             background-color: #ff0000
+
+
+.card
+    width: 80%
+    padding: 10px
+    border-radius: 20px
+    margin-left: 10%
+    margin-right: 10%
+    margin-top: 5%
+    color: #fff
+    background-color: $colorBackGroundHeader
+
+    p
+      font-size: 14px
+
+    .button-group
+      display: flex
+      justify-content: right
+      flex-direction: row
+
+      button
+        color: #fff
+        background: none
+        border-style: none
+        width: 20px
+
+      .button-finish
+          margin-right: 2%
+          border-radius: 50%
+          background-color: $colorBackGroundButtonAddTask
+
+      .button-delete
+        border-radius: 50%
+        background-color: #ff0000
+
+span
+  color: $colorBackGroundHeader
+  margin-top: 10px
+  display: flex
+  align-items: center
+  justify-content: center
+
+
