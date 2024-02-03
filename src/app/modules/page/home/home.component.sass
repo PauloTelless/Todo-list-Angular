@@ -14,7 +14,6 @@ body
   background-color: $colorBackGround
   height: 100vh
 
-
 .header-main
   background-color: $colorBackGroundHeader
   padding: 20px
@@ -50,6 +49,9 @@ span
   align-items: center
   justify-content: center
 
+  span
+    color: #ffff
+
   form
     display: flex
     flex-direction: column
@@ -63,32 +65,34 @@ span
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
 
     .input-group
+      color: #ffff
       display: flex
       flex-direction: column
-      align-items: center
-      justify-items: center
+      align-items: row
+      width: 80%
+
+      input
+        border-style: solid
+        background: none
+        border-radius: 2px
+
+      .form-control
+        background: none
 
       span
         color: #ffff
 
       label
         margin-top: 10px
+        font-size: 10px
         color: $colorTextHeader
 
-      input
-        outline: none
-        border-style: solid
-        border-color: #ffff
-        border-width: 1
-        background: none
-
-      input::placeholder
-        color: #ffff
-        font-size: 10px
-
     .button-group
+        align-items: center
+        justify-content: center
         display: flex
         flex-direction: row
+
         button
           color: #ffff
           margin-top: 8px
@@ -96,14 +100,14 @@ span
           border-radius: 5px
           cursor: pointer
           padding: 5px
-
           box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
 
         .button-submit
+          margin-right: 5px
+
           button
             background-color: #25b62f
 
         .button-cancel
           button
-            color: #ffff
             background-color: #ff0000

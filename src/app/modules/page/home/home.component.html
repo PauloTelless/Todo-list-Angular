@@ -9,12 +9,12 @@
 
   <div class="task-data">
     <form [formGroup]="addFormBuilder" *ngIf="isForm">
+      <span>Adicionar tarefa</span>
       <div class="input-group">
-        <span>Adicionar tarefa</span>
         <label>Nome</label>
-        <input type="text" placeholder="Nome da tarefa" formControlName="name">
+        <input class="form-control form-control-sm" type="text" >
         <label>Descrição</label>
-        <input type="text" placeholder="Descrição da tarefa" formControlName="description">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         <div class="button-group">
           <div class="button-submit">
             <button>Adicionar</button>
