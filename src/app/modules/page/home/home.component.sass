@@ -6,13 +6,17 @@
 
 $colorBackGround: #0c2726
 $colorBackGroundHeader: #17b485
-$colorTextHeader: #ffff
+$colorTextHeader: #fff
 $colorBackGroundButtonAddTask: #22635b
-
+/*Início body*/
 body
   background-color: $colorBackGround
+  margin: 0
   height: 100vh
+/*Fim body*/
 
+
+/*Início header com o botão de add tarefa*/
 .header-main
   background-color: $colorBackGroundHeader
   padding: 20px
@@ -35,14 +39,26 @@ body
     outline: none
     border-style: none
     cursor: pointer
+/*Fim header com o botão de add tarefa*/
 
+/*Área span*/
+span
+  color: $colorBackGroundHeader
+  margin-top: 10px
+  display: flex
+  align-items: center
+  justify-content: center
+/*Área span*/
+
+
+/*Início form para adicionar uma tarefa*/
 .task-data
   display: flex
   align-items: center
   justify-content: center
 
   span
-    color: #ffff
+    color: $colorTextHeader
 
   form
     display: flex
@@ -57,7 +73,6 @@ body
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
 
     .input-group
-      color: #ffff
       display: flex
       flex-direction: column
       align-items: row
@@ -65,18 +80,21 @@ body
       height: 80%
 
       input
+        color: $colorTextHeader
         border-style: solid
-        border-color: #ffff
+        border-color: $colorTextHeader
         background: none
         border-radius: 2px
 
       .form-control
         background: none
 
-
       label
         margin-top: 10px
         font-size: 10px
+        color: $colorTextHeader
+
+      .form-control
         color: $colorTextHeader
 
     .button-group
@@ -86,7 +104,7 @@ body
         flex-direction: row
 
         button
-          color: #ffff
+          color: $colorTextHeader
           margin-top: 8px
           border: none
           border-radius: 5px
@@ -103,8 +121,9 @@ body
         .button-cancel
           button
             background-color: #ff0000
+/*Fim form para adicionar uma tarefa*/
 
-
+/*Início do card para vizualizar tarefa*/
 .card
     width: 80%
     padding: 10px
@@ -112,7 +131,7 @@ body
     margin-left: 10%
     margin-right: 10%
     margin-top: 5%
-    color: #fff
+    color: $colorTextHeader
     background-color: $colorBackGroundHeader
 
     p
@@ -124,7 +143,7 @@ body
       flex-direction: row
 
       button
-        color: #fff
+        color: $colorTextHeader
         background: none
         border-style: none
         width: 20px
@@ -137,12 +156,4 @@ body
       .button-delete
         border-radius: 50%
         background-color: #ff0000
-
-span
-  color: $colorBackGroundHeader
-  margin-top: 10px
-  display: flex
-  align-items: center
-  justify-content: center
-
-
+/*Fim do card para vizualizar tarefa*/
