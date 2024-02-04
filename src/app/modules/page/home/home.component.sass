@@ -8,11 +8,14 @@ $colorBackGround: #0c2726
 $colorBackGroundHeader: #17b485
 $colorTextHeader: #fff
 $colorBackGroundButtonAddTask: #22635b
+$colorDanger: #ff0000
+$colorSuccess: #25b62f
+
 /*Início body*/
 body
   background-color: $colorBackGround
   margin: 0
-  height: 100vh
+  min-height: 100vh
 /*Fim body*/
 
 
@@ -116,11 +119,11 @@ span
           margin-right: 5px
 
           button
-            background-color: #25b62f
+            background-color: $colorSuccess
 
         .button-cancel
           button
-            background-color: #ff0000
+            background-color: $colorDanger
 /*Fim form para adicionar uma tarefa*/
 
 /*Início do card para vizualizar tarefa*/
@@ -155,5 +158,5 @@ span
 
       .button-delete
         border-radius: 50%
-        background-color: #ff0000
+        background-color: $colorDanger
 /*Fim do card para vizualizar tarefa*/

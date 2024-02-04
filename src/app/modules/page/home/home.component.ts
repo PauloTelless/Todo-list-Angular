@@ -1,10 +1,14 @@
+import { GetAllTaskResponse } from '../../interfaces/task/GetAllTaskResponse';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { GetAllTaskResponse } from './interfaces/task/GetAllTaskResponse';
-import { TaskService } from 'src/app/services/task/task.service';
-import { Subject, takeUntil } from 'rxjs';
+
 import { MessageService } from 'primeng/api';
-import { PostTaskResponse } from './interfaces/task/PostTaskResponse';
+
+import { Subject, takeUntil } from 'rxjs';
+
+import { TaskService } from 'src/app/services/task/task.service';
+import { PostTaskResponse } from 'src/app/modules/interfaces/task/PostTaskResponse';
+import { PutTaskResponse } from '../../interfaces/task/PutTaskResponse';
 
 
 @Component({
@@ -15,7 +19,9 @@ import { PostTaskResponse } from './interfaces/task/PostTaskResponse';
 
 export class HomeComponent implements OnDestroy, OnInit {
   isForm = false;
-  public taskDatas: Array<GetAllTaskResponse> = []
+  isCardView = true;
+  public taskDatas: Array<GetAllTaskResponse> = [];
+  public taskDatasCompleted: Array<PutTaskResponse> = [];
   private destroy$ = new Subject<void>();
 
   constructor(private formBuild: FormBuilder, private taskService: TaskService, private messageService: MessageService){}
@@ -25,7 +31,7 @@ export class HomeComponent implements OnDestroy, OnInit {
   }
 
 
-  addFormBuilder = this.formBuild.group({
+  addTask = this.formBuild.group({
     name:['', Validators.required],
     discription:['', Validators.required]
   })
@@ -44,23 +50,42 @@ export class HomeComponent implements OnDestroy, OnInit {
   }
 
   public submitForm(): void{
-    if (this.addFormBuilder.value && this.addFormBuilder.valid) {
-      this.taskService.postTask(this.addFormBuilder.value as PostTaskResponse).pipe(
+    if (this.addTask.value && this.addTask.valid) {
+      this.taskService.postTask(this.addTask.value as PostTaskResponse).pipe(
         takeUntil(this.destroy$)
       ).subscribe(response => {
         if (response) {
           this.showTasks();
           this.isForm = false;
-          this.addFormBuilder.reset();
+          this.addTask.reset();
           this.messageService.add({
             severity: 'success',
-            summary: 'Adicionada ',
+            summary: 'Sucesso ',
             detail: `Tarefa ${response.name} adicionada com sucesso`,
             life: 3000
           })
         }
       })
     }
+  }
+
+  public completedTask(id: number): void{
+    this.taskService.completedTask(id).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (response) =>{
+        if (response) {
+          this.taskDatasCompleted.push(response);
+          console.log(this.taskDatasCompleted);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Concluída ',
+            detail: `Tarefa ${response.name} concluída !`,
+            life: 3000
+          })
+        }
+      }
+    })
   }
 
   public deleteTask(tarefaid: number): void{
