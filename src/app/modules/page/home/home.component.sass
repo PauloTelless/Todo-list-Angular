@@ -18,6 +18,25 @@ body
   min-height: 100vh
 /*Fim body*/
 
+/*Início da section de status Andamento ou Concluída*/
+.section-status-task
+  display: flex
+  flex-direction: row
+  justify-content: space-evenly
+  text-decoration: none
+
+  button
+    margin-top: 2%
+    color: $colorBackGroundHeader
+    background: none
+    outline: none
+    border-style: none
+    cursor: pointer
+
+  button:focus
+    color: #fff
+/*Início da section de status Andamento ou Concluída*/
+
 
 /*Início header com o botão de add tarefa*/
 .header-main
@@ -160,3 +179,38 @@ span
         border-radius: 50%
         background-color: $colorDanger
 /*Fim do card para vizualizar tarefa*/
+
+/*Início do card para vizualizar tarefas concluídas*/
+.card-complete
+    width: 80%
+    padding: 10px
+    border-radius: 20px
+    margin-left: 10%
+    margin-right: 10%
+    margin-top: 5%
+    color: $colorTextHeader
+    background-color: $colorBackGroundHeader
+
+    p
+      font-size: 14px
+
+    .button-group
+      display: flex
+      justify-content: right
+      flex-direction: row
+
+      button
+        color: $colorTextHeader
+        background: none
+        border-style: none
+        width: 20px
+
+      .button-finish
+          margin-right: 2%
+          border-radius: 50%
+          background-color: $colorBackGroundButtonAddTask
+
+      .button-delete
+        border-radius: 50%
+        background-color: $colorDanger
+/*Fim do card para vizualizar tarefas concluídas*/

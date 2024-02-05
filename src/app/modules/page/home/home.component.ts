@@ -1,4 +1,4 @@
-import { GetAllTaskResponse } from '../../interfaces/task/GetAllTaskResponse';
+import { GetAllTaskResponse } from 'src/app/modules/interfaces/task/GetAllTaskResponse';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -20,6 +20,7 @@ import { PutTaskResponse } from '../../interfaces/task/PutTaskResponse';
 export class HomeComponent implements OnDestroy, OnInit {
   isForm = false;
   isCardView = true;
+  isCardViewCompleted = false
   public taskDatas: Array<GetAllTaskResponse> = [];
   public taskDatasCompleted: Array<PutTaskResponse> = [];
   private destroy$ = new Subject<void>();
@@ -50,6 +51,7 @@ export class HomeComponent implements OnDestroy, OnInit {
   }
 
   public submitForm(): void{
+    this.isCardView = true
     if (this.addTask.value && this.addTask.valid) {
       this.taskService.postTask(this.addTask.value as PostTaskResponse).pipe(
         takeUntil(this.destroy$)
@@ -58,12 +60,6 @@ export class HomeComponent implements OnDestroy, OnInit {
           this.showTasks();
           this.isForm = false;
           this.addTask.reset();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Sucesso ',
-            detail: `Tarefa ${response.name} adicionada com sucesso`,
-            life: 3000
-          })
         }
       })
     }
@@ -74,6 +70,10 @@ export class HomeComponent implements OnDestroy, OnInit {
       takeUntil(this.destroy$)
     ).subscribe({
       next: (response) =>{
+        this.deleteTask(id)
+        if (this.taskDatas.length == 0) {
+          this.isCardView = false
+        }
         if (response) {
           this.taskDatasCompleted.push(response);
           console.log(this.taskDatasCompleted);
@@ -93,15 +93,8 @@ export class HomeComponent implements OnDestroy, OnInit {
       takeUntil(this.destroy$)
     ).subscribe({
       next: (response) => {
-        if (response)
+        if (response){
         this.showTasks()
-        {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Descartada ',
-          detail: `Tarefa ${response.name} descartada com sucesso`,
-          life: 3000
-          })
         }
       },
       error: (err) =>{
@@ -116,6 +109,31 @@ export class HomeComponent implements OnDestroy, OnInit {
     })
   }
 
+  mostrarConcluidas(){
+    if (this.taskDatasCompleted.length == 0) {
+      this.isCardView = false;
+    }
+    else if(this.taskDatas.length == 0 && this.taskDatasCompleted.length > 0){
+      this.isCardViewCompleted = true;
+    }
+    else if(this.taskDatas.length > 0 && this.taskDatasCompleted.length > 0){
+      this.isCardView = false;
+      this.isCardViewCompleted = true
+    }
+  }
+
+  mostrarEmAndamento(){
+    if (this.taskDatasCompleted.length == 0 && this.isCardView == false) {
+      this.isCardView = true;
+    }
+    else if(this.taskDatas.length == 0 && this.taskDatasCompleted.length > 0){
+      this.isCardViewCompleted = false;
+    }
+    else if(this.taskDatas.length > 0 && this.taskDatasCompleted.length > 0){
+      this.isCardView = true;
+      this.isCardViewCompleted = false
+    }
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();
