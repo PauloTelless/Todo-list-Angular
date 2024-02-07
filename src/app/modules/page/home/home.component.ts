@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { MessageService } from 'primeng/api';
 
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, filter, takeUntil } from 'rxjs';
 
 import { TaskService } from 'src/app/services/task/task.service';
 import { PostTaskResponse } from 'src/app/modules/interfaces/task/PostTaskResponse';
@@ -42,7 +42,7 @@ export class HomeComponent implements OnDestroy, OnInit {
       takeUntil(this.destroy$)
     ).subscribe({
         next: (response) => {
-          this.taskDatas = response;
+          this.taskDatas = response.filter((x) => x.tarefaId).sort((a, b) => a.tarefaId - b.tarefaId);
         },
         error: (err) => {
           console.log(err)
@@ -114,7 +114,7 @@ export class HomeComponent implements OnDestroy, OnInit {
     if (index !== -1) {
         this.taskDatasCompleted.splice(index, 1);
 
-        if (this.taskDatas.length > 0 && this.taskDatasCompleted.length > 0) {
+        if (this.taskDatas.length > 0 && this.taskDatasCompleted.length >= 1) {
           this.isCardViewCompleted = false;
         }
     }
