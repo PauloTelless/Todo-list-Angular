@@ -113,16 +113,20 @@ export class HomeComponent implements OnDestroy, OnInit {
     const index = this.taskDatasCompleted.findIndex((x) => x.tarefaId === tarefaId);
     if (index !== -1) {
         this.taskDatasCompleted.splice(index, 1);
+
+        if (this.taskDatas.length > 0 && this.taskDatasCompleted.length > 0) {
+          this.isCardViewCompleted = false;
+        }
     }
+
     console.log(this.taskDatasCompleted)
 }
-
 
   mostrarConcluidas(){
     if (this.taskDatasCompleted.length == 0) {
       this.isCardView = false;
     }
-    else if(this.taskDatas.length == 0 && this.taskDatasCompleted.length > 0){
+    else if(this.taskDatas.length == 0 && this.taskDatasCompleted.length >= 1){
       this.isCardViewCompleted = true;
     }
     else if(this.taskDatas.length > 0 && this.taskDatasCompleted.length > 0){
@@ -148,4 +152,5 @@ export class HomeComponent implements OnDestroy, OnInit {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
 }
