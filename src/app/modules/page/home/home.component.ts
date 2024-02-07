@@ -115,7 +115,8 @@ export class HomeComponent implements OnDestroy, OnInit {
         this.taskDatasCompleted.splice(index, 1);
 
         if (this.taskDatas.length > 0 && this.taskDatasCompleted.length >= 1) {
-          this.isCardViewCompleted = false;
+          this.isCardViewCompleted = true;
+          this.isCardView = false;
         }
     }
 
