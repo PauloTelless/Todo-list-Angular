@@ -1,4 +1,4 @@
-export interface PostTaskResponse{
+export interface PostTaskCompleteResponse{
   tarefaId: number;
   name: string;
   discription: string;

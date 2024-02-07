@@ -109,6 +109,15 @@ export class HomeComponent implements OnDestroy, OnInit {
     })
   }
 
+  deleteTaskComplete(tarefaId: number) {
+    const index = this.taskDatasCompleted.findIndex((x) => x.tarefaId === tarefaId);
+    if (index !== -1) {
+        this.taskDatasCompleted.splice(index, 1);
+    }
+    console.log(this.taskDatasCompleted)
+}
+
+
   mostrarConcluidas(){
     if (this.taskDatasCompleted.length == 0) {
       this.isCardView = false;

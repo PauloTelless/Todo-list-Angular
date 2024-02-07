@@ -15,14 +15,12 @@ import { MessagesModule } from 'primeng/messages';
 import { ToastModule} from 'primeng/toast'
 
 import { HomeComponent } from './modules/page/home/home.component';
-import { TaskCompleteComponent } from './modules/components/task-complete/task-complete.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    TaskCompleteComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
