@@ -1,5 +1,5 @@
-export interface PutTaskResponse{
-  tarefaCompleteId: number;
+export interface GetAllTaskCompleteResponse{
+  tarefaId: number;
   name: string;
   discription: string;
   isCompleted: boolean;

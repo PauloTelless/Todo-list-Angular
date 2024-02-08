@@ -4,3 +4,4 @@ export interface GetAllTaskResponse{
   discription: string;
   isCompleted: boolean;
 }
+

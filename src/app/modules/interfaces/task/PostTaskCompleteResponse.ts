@@ -1,5 +1,5 @@
 export interface PostTaskCompleteResponse{
-  tarefaId: number;
+  tarefaCompleteId: number;
   name: string;
   discription: string;
   isCompleted: boolean;

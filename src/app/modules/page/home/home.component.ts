@@ -9,6 +9,7 @@ import { Subject, filter, takeUntil } from 'rxjs';
 import { TaskService } from 'src/app/services/task/task.service';
 import { PostTaskResponse } from 'src/app/modules/interfaces/task/PostTaskResponse';
 import { PutTaskResponse } from '../../interfaces/task/PutTaskResponse';
+import { PostTaskCompleteResponse } from '../../interfaces/task/PostTaskCompleteResponse';
 
 
 @Component({
@@ -29,6 +30,11 @@ export class HomeComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.showTasks();
+    this.getAllTaskComplete();
+  }
+
+  update(): void{
+    this.getAllTaskComplete();
   }
 
 
@@ -66,6 +72,7 @@ export class HomeComponent implements OnDestroy, OnInit {
   }
 
   public completedTask(id: number): void{
+    this.showTasks()
     this.taskService.completedTask(id).pipe(
       takeUntil(this.destroy$)
     ).subscribe({
@@ -76,7 +83,16 @@ export class HomeComponent implements OnDestroy, OnInit {
         }
         if (response) {
           this.taskDatasCompleted.push(response);
-          console.log(this.taskDatasCompleted);
+          this.taskService.completeTaskPost(response as PostTaskCompleteResponse).pipe(
+            takeUntil(
+              this.destroy$
+            )
+          ).subscribe({
+            next: (response) => {
+              console.log(response)
+            }
+          })
+          console.log('taskComplete', this.taskDatasCompleted);
           this.messageService.add({
             severity: 'success',
             summary: 'Concluída ',
@@ -84,6 +100,19 @@ export class HomeComponent implements OnDestroy, OnInit {
             life: 3000
           })
         }
+      }
+    })
+  }
+
+  public getAllTaskComplete(){
+    this.taskService.getAllTasksComplete().pipe(
+      takeUntil(
+        this.destroy$
+      )
+    ).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.taskDatasCompleted = response
       }
     })
   }
@@ -109,36 +138,41 @@ export class HomeComponent implements OnDestroy, OnInit {
     })
   }
 
-  deleteTaskComplete(tarefaId: number) {
-    const index = this.taskDatasCompleted.findIndex((x) => x.tarefaId === tarefaId);
-    if (index !== -1) {
-        this.taskDatasCompleted.splice(index, 1);
-
-        if (this.taskDatas.length > 0 && this.taskDatasCompleted.length >= 1) {
-          this.isCardViewCompleted = true;
-          this.isCardView = false;
+  public deleteTaskComplete(tarefaId: number) {
+    console.log('tarefaId', tarefaId)
+    this.taskService.deleteTaskComplete(tarefaId).pipe(
+      takeUntil(
+        this.destroy$
+      )
+    ).subscribe({
+      next: (response) =>{
+        if (response) {
+          this.getAllTaskComplete();
         }
-    }
-
-    console.log(this.taskDatasCompleted)
+      }
+    })
 }
 
-  mostrarConcluidas(){
+  public mostrarConcluidas(){
     if (this.taskDatasCompleted.length == 0) {
       this.isCardView = false;
+      this.update();
     }
     else if(this.taskDatas.length == 0 && this.taskDatasCompleted.length >= 1){
       this.isCardViewCompleted = true;
+      this.update();
     }
     else if(this.taskDatas.length > 0 && this.taskDatasCompleted.length > 0){
       this.isCardView = false;
       this.isCardViewCompleted = true
+      this.update();
     }
   }
 
-  mostrarEmAndamento(){
+  public mostrarEmAndamento(){
     if (this.taskDatasCompleted.length == 0 && this.isCardView == false) {
       this.isCardView = true;
+
     }
     else if(this.taskDatas.length == 0 && this.taskDatasCompleted.length > 0){
       this.isCardViewCompleted = false;
