@@ -62,6 +62,12 @@ export class HomeComponent implements OnDestroy, OnInit {
       this.taskService.postTask(this.addTask.value as PostTaskResponse).pipe(
         takeUntil(this.destroy$)
       ).subscribe(response => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Adicionada',
+          detail:`Tarefa ${response.name} adicionada com sucesso !`,
+          life: 3000
+        })
         if (response) {
           this.showTasks();
           this.isForm = false;
@@ -69,6 +75,19 @@ export class HomeComponent implements OnDestroy, OnInit {
         }
       })
     }
+  }
+
+  public getAllTaskComplete(){
+    this.taskService.getAllTasksComplete().pipe(
+      takeUntil(
+        this.destroy$
+      )
+    ).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.taskDatasCompleted = response
+      }
+    })
   }
 
   public completedTask(id: number): void{
@@ -87,12 +106,7 @@ export class HomeComponent implements OnDestroy, OnInit {
             takeUntil(
               this.destroy$
             )
-          ).subscribe({
-            next: (response) => {
-              console.log(response)
-            }
-          })
-          console.log('taskComplete', this.taskDatasCompleted);
+          ).subscribe()
           this.messageService.add({
             severity: 'success',
             summary: 'Concluída ',
@@ -104,18 +118,6 @@ export class HomeComponent implements OnDestroy, OnInit {
     })
   }
 
-  public getAllTaskComplete(){
-    this.taskService.getAllTasksComplete().pipe(
-      takeUntil(
-        this.destroy$
-      )
-    ).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.taskDatasCompleted = response
-      }
-    })
-  }
 
   public deleteTask(tarefaid: number): void{
     this.taskService.deleteTask(tarefaid).pipe(
@@ -139,13 +141,18 @@ export class HomeComponent implements OnDestroy, OnInit {
   }
 
   public deleteTaskComplete(tarefaId: number) {
-    console.log('tarefaId', tarefaId)
     this.taskService.deleteTaskComplete(tarefaId).pipe(
       takeUntil(
         this.destroy$
       )
     ).subscribe({
       next: (response) =>{
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Removida',
+          detail: `Tarefa completa removida !`,
+          life: 3000
+        })
         if (response) {
           this.getAllTaskComplete();
         }
