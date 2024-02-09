@@ -84,7 +84,6 @@ export class HomeComponent implements OnDestroy, OnInit {
       )
     ).subscribe({
       next: (response) => {
-        console.log(response);
         this.taskDatasCompleted = response
       }
     })
