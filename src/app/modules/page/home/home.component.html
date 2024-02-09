@@ -13,7 +13,7 @@
 
   <!---Form para cadastrar uma tarefa--->
   <div class="task-data">
-    <form [formGroup]="addTask" *ngIf="isForm" (submit)="submitForm()">
+    <form [formGroup]="addTaskForm" *ngIf="isForm" (submit)="submitForm()">
       <span>Adicionar tarefa</span>
       <div class="input-group">
         <label>Nome</label>

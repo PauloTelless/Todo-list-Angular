@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { MessageService } from 'primeng/api';
 
-import { Subject, filter, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 import { TaskService } from 'src/app/services/task/task.service';
 import { PostTaskResponse } from 'src/app/modules/interfaces/task/PostTaskResponse';
@@ -37,8 +37,7 @@ export class HomeComponent implements OnDestroy, OnInit {
     this.getAllTaskComplete();
   }
 
-
-  addTask = this.formBuild.group({
+  public addTaskForm = this.formBuild.group({
     name:['', Validators.required],
     discription:['', Validators.required]
   })
@@ -58,8 +57,8 @@ export class HomeComponent implements OnDestroy, OnInit {
 
   public submitForm(): void{
     this.isCardView = true
-    if (this.addTask.value && this.addTask.valid) {
-      this.taskService.postTask(this.addTask.value as PostTaskResponse).pipe(
+    if (this.addTaskForm.value && this.addTaskForm.valid) {
+      this.taskService.postTask(this.addTaskForm.value as PostTaskResponse).pipe(
         takeUntil(this.destroy$)
       ).subscribe(response => {
         this.messageService.add({
@@ -71,7 +70,7 @@ export class HomeComponent implements OnDestroy, OnInit {
         if (response) {
           this.showTasks();
           this.isForm = false;
-          this.addTask.reset();
+          this.addTaskForm.reset();
         }
       })
     }
@@ -117,7 +116,6 @@ export class HomeComponent implements OnDestroy, OnInit {
       }
     })
   }
-
 
   public deleteTask(tarefaid: number): void{
     this.taskService.deleteTask(tarefaid).pipe(

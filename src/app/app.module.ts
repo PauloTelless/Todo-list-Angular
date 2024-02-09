@@ -16,7 +16,6 @@ import { ToastModule} from 'primeng/toast'
 
 import { HomeComponent } from './modules/page/home/home.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
