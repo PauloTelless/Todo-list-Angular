@@ -65,7 +65,7 @@ export class HomeComponent implements OnDestroy, OnInit {
         this.messageService.add({
           severity: 'success',
           summary: 'Adicionada',
-          detail:`Tarefa ${response.name} adicionada com sucesso !`,
+          detail:`Tarefa "${response.name}" adicionada com sucesso !`,
           life: 3000
         })
         if (response) {
@@ -109,7 +109,7 @@ export class HomeComponent implements OnDestroy, OnInit {
           this.messageService.add({
             severity: 'success',
             summary: 'Concluída ',
-            detail: `Tarefa ${response.name} concluída !`,
+            detail: `Tarefa "${response.name}" concluída !`,
             life: 3000
           })
         }
