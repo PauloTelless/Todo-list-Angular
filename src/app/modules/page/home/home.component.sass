@@ -1,0 +1,216 @@
+*
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  font-family: Arial, Helvetica, sans-serif
+
+$colorBackGround: #0c2726
+$colorBackGroundHeader: #17b485
+$colorTextHeader: #fff
+$colorBackGroundButtonAddTask: #22635b
+$colorDanger: #ff0000
+$colorSuccess: #25b62f
+
+/*Início body*/
+body
+  background-color: $colorBackGround
+  margin: 0
+  min-height: 100vh
+/*Fim body*/
+
+/*Início da section de status Andamento ou Concluída*/
+.section-status-task
+  display: flex
+  flex-direction: row
+  justify-content: space-evenly
+  text-decoration: none
+
+  button
+    margin-top: 2%
+    color: $colorBackGroundHeader
+    background: none
+    outline: none
+    border-style: none
+    cursor: pointer
+
+  button:focus
+    color: #fff
+/*Início da section de status Andamento ou Concluída*/
+
+
+/*Início header com o botão de add tarefa*/
+.header-main
+  background-color: $colorBackGroundHeader
+  padding: 20px
+  border-bottom-left-radius: 15px
+  border-bottom-right-radius: 15px
+
+  header
+    display: flex
+    justify-content: space-between
+
+  p
+    color: $colorTextHeader
+
+  button
+    background-color: $colorBackGroundButtonAddTask
+    color: $colorTextHeader
+    width: 25px
+    height: 25px
+    border-radius: 50%
+    outline: none
+    border-style: none
+    cursor: pointer
+/*Fim header com o botão de add tarefa*/
+
+/*Área span*/
+span
+  color: $colorBackGroundHeader
+  margin-top: 10px
+  display: flex
+  align-items: center
+  justify-content: center
+/*Área span*/
+
+
+/*Início form para adicionar uma tarefa*/
+.task-data
+  display: flex
+  align-items: center
+  justify-content: center
+
+  span
+    color: $colorTextHeader
+
+  form
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    margin-top: 15px
+    width: 450px
+    height: 200px
+    border-radius: 5px
+    background-color: $colorBackGroundButtonAddTask
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
+
+    .input-group
+      display: flex
+      flex-direction: column
+      align-items: row
+      width: 80%
+      height: 80%
+
+      input
+        color: $colorTextHeader
+        border-style: solid
+        border-color: $colorTextHeader
+        background: none
+        border-radius: 2px
+
+      .form-control
+        background: none
+
+      label
+        margin-top: 10px
+        font-size: 10px
+        color: $colorTextHeader
+
+      .form-control
+        color: $colorTextHeader
+
+    .button-group
+        align-items: center
+        justify-content: center
+        display: flex
+        flex-direction: row
+
+        button
+          color: $colorTextHeader
+          margin-top: 8px
+          border: none
+          border-radius: 5px
+          cursor: pointer
+          padding: 5px
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5)
+
+        .button-submit
+          margin-right: 5px
+
+          button
+            background-color: $colorSuccess
+
+        .button-cancel
+          button
+            background-color: $colorDanger
+/*Fim form para adicionar uma tarefa*/
+
+/*Início do card para vizualizar tarefa*/
+.card
+    width: 80%
+    padding: 10px
+    border-radius: 20px
+    margin-left: 10%
+    margin-right: 10%
+    margin-top: 5%
+    color: $colorTextHeader
+    background-color: $colorBackGroundHeader
+
+    p
+      font-size: 14px
+
+    .button-group
+      display: flex
+      justify-content: right
+      flex-direction: row
+
+      button
+        color: $colorTextHeader
+        background: none
+        border-style: none
+        width: 20px
+
+      .button-finish
+          margin-right: 2%
+          border-radius: 50%
+          background-color: $colorBackGroundButtonAddTask
+
+      .button-delete
+        border-radius: 50%
+        background-color: $colorDanger
+/*Fim do card para vizualizar tarefa*/
+
+/*Início do card para vizualizar tarefas concluídas*/
+.card-complete
+    width: 80%
+    padding: 10px
+    border-radius: 20px
+    margin-left: 10%
+    margin-right: 10%
+    margin-top: 5%
+    color: $colorTextHeader
+    background-color: $colorBackGroundHeader
+
+    p
+      font-size: 14px
+
+    .button-group
+      display: flex
+      justify-content: right
+      flex-direction: row
+
+      button
+        color: $colorTextHeader
+        background: none
+        border-style: none
+        width: 20px
+
+      .button-finish
+          margin-right: 2%
+          border-radius: 50%
+          background-color: $colorBackGroundButtonAddTask
+
+      .button-delete
+        border-radius: 50%
+        background-color: $colorDanger
+/*Fim do card para vizualizar tarefas concluídas*/
